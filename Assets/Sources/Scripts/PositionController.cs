@@ -16,8 +16,8 @@ public class PositionController : SerializedMonoBehaviour {
             var positionObject = position.gameObject;
             var current = positionObject.transform.position;
             var target = position.Target;
-            var speed = position.Speed;
-            var next = Vector3.MoveTowards(current, target, speed * Time.deltaTime);
+            var maxDistance = position.Speed * Time.deltaTime;
+            var next = Vector3.MoveTowards(current, target, maxDistance);
             positionObject.transform.position = next;
             var prevFinished = position.IsFinished;
             position.IsFinished = next == target;
