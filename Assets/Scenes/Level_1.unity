@@ -771,6 +771,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -807,9 +808,8 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  mainCamera: {fileID: 519420031}
-  moveSpeed: 5
-  playerController: {fileID: 1648776954}
+  MainCamera: {fileID: 519420031}
+  PlayerController: {fileID: 1648776954}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -867,6 +867,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d9966c294240e193eafa086b8157bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  Speed: 8
+  IsFinished: 0
+  Target: {x: 8, y: 0, z: -10}
 --- !u!1 &655974704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,6 +1072,7 @@ GameObject:
   - component: {fileID: 731714934}
   - component: {fileID: 731714935}
   - component: {fileID: 731714936}
+  - component: {fileID: 731714937}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: GameController
@@ -1160,6 +1185,27 @@ MonoBehaviour:
   npcManager: {fileID: 731714935}
   player: {fileID: 1648776954}
   dialogueRunner: {fileID: 510850452}
+--- !u!114 &731714937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731714931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2092b2d0116c47f4b1931f9fda374617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
 --- !u!1 &864199951
 GameObject:
   m_ObjectHideFlags: 0
@@ -6196,6 +6242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1648776953}
   - component: {fileID: 1648776954}
+  - component: {fileID: 1648776955}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6244,8 +6291,31 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  moveSpeed: 5
-  gameController: {fileID: 731714932}
+  GameController: {fileID: 731714932}
+--- !u!114 &1648776955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648776952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d9966c294240e193eafa086b8157bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  Speed: 8
+  IsFinished: 0
+  Target: {x: 4, y: 0, z: 0}
 --- !u!1 &1748377757
 GameObject:
   m_ObjectHideFlags: 0

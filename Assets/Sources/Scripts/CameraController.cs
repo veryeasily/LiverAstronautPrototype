@@ -4,36 +4,29 @@ using Sirenix.OdinInspector;
 using UnityEngine.InputSystem;
 
 public class CameraController : SerializedMonoBehaviour {
-    public Camera mainCamera;
-    public float moveSpeed = 5f;
-    public PlayerController playerController;
-
-    private Vector3 _gridTarget = Vector3.zero;
+    public Camera MainCamera;
+    public PlayerController PlayerController;
+    
+    private PositionBehaviour _positionBehaviour;
 
     public void Start() {
-        var position = transform.position;
-        _gridTarget = Vector3.zero;
-        _gridTarget.x = (int) position.x;
-        _gridTarget.y = (int) position.y;
-        _gridTarget.z = (int) position.z;
+        _positionBehaviour = GetComponent<PositionBehaviour>();
     }
 
     public void OnEnable() {
-        playerController.OnMoveFinished += OnMoveFinished;
+        var behaviour = PlayerController.GetComponent<PositionBehaviour>();
+        behaviour.OnMoveComplete += OnMoveFinished;
     }
 
     public void OnDisable() {
-        playerController.OnMoveFinished -= OnMoveFinished;
+        var behaviour = PlayerController.GetComponent<PositionBehaviour>();
+        behaviour.OnMoveComplete -= OnMoveFinished;
     }
 
-    public void Update() {
-        var maxMove = moveSpeed * Time.deltaTime;
-        var vec = Vector3.MoveTowards(transform.localPosition, _gridTarget, maxMove);
-        transform.position = vec;
-    }
-
-    private void OnMoveFinished(Vector3 playerVec) {
-        var result = (int) Mathf.Floor(playerVec.x / 16);
-        _gridTarget.x = result * 16 + 8;
+    private void OnMoveFinished(PositionBehaviour position) {
+        var vec = position.gameObject.transform.position;
+        var result = (int) Mathf.Floor(vec.x / 16);
+        Debug.Log($"QWERASDF={result}");
+        _positionBehaviour.Target.x = result * 16 + 8;
     }
 }
