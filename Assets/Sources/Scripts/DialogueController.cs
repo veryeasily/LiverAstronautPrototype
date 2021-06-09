@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using System.Linq;
-using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using Yarn.Unity;
 
 public class DialogueController : SerializedMonoBehaviour {
@@ -13,8 +11,12 @@ public class DialogueController : SerializedMonoBehaviour {
 
     public NpcManager npcManager;
     public PlayerController player;
-    public DialogueRunner dialogueRunner;
+    public InventoryController inventory;
     
+    public Image dialoguePortrait;
+    public DialogueRunner dialogueRunner;
+
+    private Npc _currentCharacter;
     private GameConfig _gameConfig;
     private readonly List<Npc> _visitedNpcs = new List<Npc>();
 
@@ -34,6 +36,15 @@ public class DialogueController : SerializedMonoBehaviour {
         CheckNpcDialogue();
     }
 
+    public void EndDialogue() {
+        if (!_currentCharacter) {
+            throw new Exception("Tried to end dialogue while there was no current character");
+        }
+        
+        inventory.Add(_currentCharacter);
+        _currentCharacter = null;
+    }
+
     private void CheckNpcDialogue() {
         if (GameController.Instance.isDialoguePlaying) return;
 
@@ -42,13 +53,19 @@ public class DialogueController : SerializedMonoBehaviour {
             var inRange = npc.CheckDistance(player, _gameConfig.dialogueDistance);
             if (!inRange) continue;
             
-            dialogueRunner.Stop();
-            dialogueRunner.Clear();
-            dialogueRunner.Add(npc.dialogue);
-            dialogueRunner.StartDialogue();
-            _visitedNpcs.Add(npc);
+            ActivateForNpc(npc);
             break;
         }
+    }
+
+    private void ActivateForNpc(Npc npc) {
+        dialoguePortrait.sprite = npc.sprite;
+        dialogueRunner.Stop();
+        dialogueRunner.Clear();
+        dialogueRunner.Add(npc.dialogue);
+        dialogueRunner.StartDialogue();
+        _visitedNpcs.Add(npc);
+        _currentCharacter = npc;
     }
 
     private IEnumerable<Npc> GetUnvisitedNpcs() {
