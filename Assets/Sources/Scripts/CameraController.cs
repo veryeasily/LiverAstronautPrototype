@@ -1,32 +1,26 @@
-using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using UnityEngine.InputSystem;
 
 public class CameraController : SerializedMonoBehaviour {
-    public Camera MainCamera;
-    public PlayerController PlayerController;
+    public PlayerController Player;
     
-    private PositionBehaviour _positionBehaviour;
-
-    public void Start() {
-        _positionBehaviour = GetComponent<PositionBehaviour>();
-    }
+    private PositionBehaviour _cameraPosition;
 
     public void OnEnable() {
-        var behaviour = PlayerController.GetComponent<PositionBehaviour>();
-        behaviour.OnMoveComplete += OnMoveFinished;
+        Player.OnPlayerMoveEnd += HandleMoveFinished;
     }
 
     public void OnDisable() {
-        var behaviour = PlayerController.GetComponent<PositionBehaviour>();
-        behaviour.OnMoveComplete -= OnMoveFinished;
+        Player.OnPlayerMoveEnd -= HandleMoveFinished;
     }
 
-    private void OnMoveFinished(PositionBehaviour position) {
+    public void Awake() {
+        _cameraPosition = GetComponent<PositionBehaviour>();
+    }
+
+    private void HandleMoveFinished(PositionBehaviour position) {
         var vec = position.gameObject.transform.position;
         var result = (int) Mathf.Floor(vec.x / 16);
-        Debug.Log($"QWERASDF={result}");
-        _positionBehaviour.Target.x = result * 16 + 8;
+        _cameraPosition.Target.x = result * 16 + 8;
     }
 }

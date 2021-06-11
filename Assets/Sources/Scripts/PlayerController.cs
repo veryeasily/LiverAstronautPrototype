@@ -4,26 +4,28 @@ using Sirenix.OdinInspector;
 using UnityEngine.InputSystem;
 
 public class PlayerController : SerializedMonoBehaviour {
-    public GameController GameController;
+    public event Action<PositionBehaviour> OnPlayerMoveEnd;
+    
     private PositionBehaviour _positionBehaviour;
 
-    public void Start() {
-        _positionBehaviour = GetComponent<PositionBehaviour>();
-    }
-
     public void OnEnable() {
-        GameController.OnMoveInput += OnMoveInput;
+        _positionBehaviour = GetComponent<PositionBehaviour>();
+        _positionBehaviour.OnMoveEnd += HandleMoveEnd;
     }
 
     public void OnDisable() {
-        GameController.OnMoveInput -= OnMoveInput;
+        _positionBehaviour.OnMoveEnd -= HandleMoveEnd;
     }
 
-    private void OnMoveInput(InputAction.CallbackContext ctx) {
-        if (GameController.isDialoguePlaying) return;
+    public void OnMoveInput(InputAction.CallbackContext ctx) {
+        if (GameState.Instance.IsDialoguePlaying) return;
         
         var vec = ctx.ReadValue<Vector2>();
         _positionBehaviour.Target.x += (int) vec.x;
         _positionBehaviour.Target.y += (int) vec.y;
+    }
+
+    private void HandleMoveEnd(PositionBehaviour position) {
+        OnPlayerMoveEnd?.Invoke(position);
     }
 }

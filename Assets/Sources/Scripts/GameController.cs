@@ -10,11 +10,9 @@ public class GameController : SerializedMonoBehaviour {
     public static GameController Instance => _instance;
     private static GameController _instance;
 
-    public GameConfig gameConfig;
-    public bool isDialoguePlaying;
-    public event Action<InputAction.CallbackContext> OnMoveInput;
+    public PlayerController Player;
 
-    private void Awake() {
+    public void Awake() {
         if (_instance != null && _instance != this) {
             throw new Exception("Tried to create multiple instances");
         }
@@ -27,14 +25,6 @@ public class GameController : SerializedMonoBehaviour {
         UnityLogger.LogObject(ctx);
         if (!ctx.performed && !ctx.canceled) return;
 
-        OnMoveInput?.Invoke(ctx);
-    }
-
-    public void SetIsDialoguePlaying(bool isPlaying) {
-        isDialoguePlaying = isPlaying;
-    }
-
-    private void OnDialogueStart(object obj) {
-        SetIsDialoguePlaying(true);
+        Player.OnMoveInput(ctx);
     }
 }
