@@ -19,8 +19,17 @@ public class GameController : SerializedMonoBehaviour {
 
     [UsedImplicitly]
     public void OnInput(InputAction.CallbackContext ctx) {
-        if (!ctx.performed && !ctx.canceled) return;
+        switch (ctx.action.name) {
+            case "Move": 
+                if (!ctx.performed && !ctx.canceled) return;
 
-        Player.OnMoveInput(ctx);
+                Player.OnMoveInput(ctx);
+                break;
+            case "Open":
+                if (!ctx.performed) return;
+                
+                Player.OnOpenInput(ctx);
+                break;
+        }
     }
 }

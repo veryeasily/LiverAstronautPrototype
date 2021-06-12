@@ -30,6 +30,12 @@ public class PlayerController : SerializedMonoBehaviour {
         _positionBehaviour.Target.y += (int) vec.y;
     }
 
+    public void OnOpenInput(InputAction.CallbackContext ctx) {
+        if (GameState.Instance.IsDialoguePlaying) return;
+        
+        Debug.Log("OPEN!!");
+    }
+
     private void HandleMoveEnd(PositionBehaviour position) {
         OnPlayerMoveEnd?.Invoke(position);
     }
