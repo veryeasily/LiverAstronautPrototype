@@ -13,17 +13,23 @@ public class PositionBehaviour : SerializedMonoBehaviour {
     [NonSerialized] public Tween CurrentTween;
 
     public void Awake() {
-        Source = transform.position;
+        Source = transform.localPosition;
     }
 
     public void Start() {
         PositionController.Instance.AddPosition(this);
     }
 
+    public float GetTravelTime() {
+        var vec = transform.localPosition;
+        var distance = Vector3.Distance(vec, Target);
+        return distance / Speed;
+    }
+
     public void MoveComplete() {
         CurrentTween = null;
         IsFinished = true;
-        Source = transform.position;
+        Source = transform.localPosition;
         OnMoveEnd?.Invoke(this);
     }
 

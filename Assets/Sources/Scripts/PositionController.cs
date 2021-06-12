@@ -1,8 +1,6 @@
-using UnityEngine;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
-using DG.Tweening;
-using UniRx.Triggers;
 
 public class PositionController : SerializedMonoBehaviour {
     public static PositionController Instance;
@@ -18,10 +16,9 @@ public class PositionController : SerializedMonoBehaviour {
             if (position.CurrentTween != null) continue;
 
             var posTrans = position.gameObject.transform;
-            if (posTrans.position == position.Target) continue;
-            
-            var distance = Vector3.Distance(position.Target, posTrans.position);
-            var time = distance / position.Speed;
+            if (posTrans.localPosition == position.Target) continue;
+
+            var time = position.GetTravelTime();
             var tween = posTrans.DOMove(position.Target, time);
             tween.SetEase(Ease.Linear);
             tween.OnComplete(() => {

@@ -9,6 +9,7 @@ public class ObstacleBehaviour : SerializedMonoBehaviour {
     public Sprite sprite;
     public YarnProgram dialogue;
     public string characterName;
+    public AudioClip SuccessClip;
     public SpriteRenderer Renderer;
     public event Action<ObstacleBehaviour> OnDefeated;
 
@@ -39,6 +40,7 @@ public class ObstacleBehaviour : SerializedMonoBehaviour {
 
     private void HandleHide() {
         gameObject.SetActive(false);
+        AudioManager.Instance.Play(SuccessClip);
         OnDefeated?.Invoke(this);
     }
 }
