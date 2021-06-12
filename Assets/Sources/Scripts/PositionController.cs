@@ -1,6 +1,8 @@
-using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
+using DG.Tweening;
+using UniRx.Triggers;
 
 public class PositionController : SerializedMonoBehaviour {
     public static PositionController Instance;
@@ -11,19 +13,22 @@ public class PositionController : SerializedMonoBehaviour {
         Instance = this;
     }
 
-    public void Update() {
+    public void FixedUpdate() {
         foreach (var position in _positionBehaviours) {
-            var positionObject = position.gameObject;
-            var current = positionObject.transform.position;
-            var target = position.Target;
-            var maxDistance = position.Speed * Time.deltaTime;
-            var next = Vector3.MoveTowards(current, target, maxDistance);
-            positionObject.transform.position = next;
-            var prevFinished = position.IsFinished;
-            position.IsFinished = next == target;
-            if (position.IsFinished && prevFinished != position.IsFinished) {
+            if (position.CurrentTween != null) continue;
+
+            var posTrans = position.gameObject.transform;
+            if (posTrans.position == position.Target) continue;
+            
+            var distance = Vector3.Distance(position.Target, posTrans.position);
+            var time = distance / position.Speed;
+            var tween = posTrans.DOMove(position.Target, time);
+            tween.SetEase(Ease.Linear);
+            tween.OnComplete(() => {
                 position.MoveComplete();
-            }
+            });
+            position.IsFinished = false;
+            position.CurrentTween = tween;
         }
     }
 

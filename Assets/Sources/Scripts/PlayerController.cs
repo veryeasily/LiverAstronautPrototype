@@ -6,7 +6,12 @@ using UnityEngine.InputSystem;
 public class PlayerController : SerializedMonoBehaviour {
     public event Action<PositionBehaviour> OnPlayerMoveEnd;
     
+    private BoxCollider2D _collider;
     private PositionBehaviour _positionBehaviour;
+
+    public void Start() {
+        _collider = GetComponent<BoxCollider2D>();
+    }
 
     public void OnEnable() {
         _positionBehaviour = GetComponent<PositionBehaviour>();

@@ -11,7 +11,7 @@ public class GameState : SerializedMonoBehaviour {
     public bool IsDialoguePlaying;
 
     public List<NpcBehaviour> Npcs = new List<NpcBehaviour>();
-    public List<EnemyBehaviour> Enemies = new List<EnemyBehaviour>();
+    public List<ObstacleBehaviour> Enemies = new List<ObstacleBehaviour>();
 
     public ReactiveCollection<NpcBehaviour> Inventory = new ReactiveCollection<NpcBehaviour>();
     

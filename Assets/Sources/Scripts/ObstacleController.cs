@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Yarn.Unity;
 
-public class EnemyController : SerializedMonoBehaviour {
-    public static EnemyController Instance => _instance;
-    private static EnemyController _instance;
+public class ObstacleController : SerializedMonoBehaviour {
+    public static ObstacleController Instance => _instance;
+    private static ObstacleController _instance;
 
     public PlayerController Player;
 
     public Image DialoguePortrait;
     public DialogueRunner DialogueRunner;
 
-    [SerializeReference] private EnemyBehaviour _currentEnemy;
+    [FormerlySerializedAs("_currentEnemy")] [SerializeReference] private ObstacleBehaviour CurrentObstacle;
 
     public void Awake() {
         if (_instance != null && _instance != this) {
@@ -38,7 +39,7 @@ public class EnemyController : SerializedMonoBehaviour {
     }
 
     private void CheckEnemies() {
-        if (_currentEnemy) return;
+        if (CurrentObstacle) return;
         
         var activeEnemies = GetActiveEnemies();
         foreach (var enemy in activeEnemies) {
@@ -51,16 +52,16 @@ public class EnemyController : SerializedMonoBehaviour {
         }
     }
 
-    private void ActivateForEnemy(EnemyBehaviour enemy) {
-        _currentEnemy = enemy;
+    private void ActivateForEnemy(ObstacleBehaviour obstacle) {
+        CurrentObstacle = obstacle;
         
-        var canDefeat = GameState.Instance.Inventory.Contains(enemy.weakness);
+        var canDefeat = GameState.Instance.Inventory.Contains(obstacle.weakness);
         if (canDefeat) {
-            enemy.Defeat();
+            obstacle.Defeat();
         }
     }
 
-    private IEnumerable<EnemyBehaviour> GetActiveEnemies() {
+    private IEnumerable<ObstacleBehaviour> GetActiveEnemies() {
         return GameState.Instance.Enemies.FindAll(e => !e.IsDefeated);
     }
 }

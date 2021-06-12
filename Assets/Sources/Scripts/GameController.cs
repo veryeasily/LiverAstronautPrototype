@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GameController : SerializedMonoBehaviour {
@@ -22,7 +19,6 @@ public class GameController : SerializedMonoBehaviour {
 
     [UsedImplicitly]
     public void OnInput(InputAction.CallbackContext ctx) {
-        UnityLogger.LogObject(ctx);
         if (!ctx.performed && !ctx.canceled) return;
 
         Player.OnMoveInput(ctx);

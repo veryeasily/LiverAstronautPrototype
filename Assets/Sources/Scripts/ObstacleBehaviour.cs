@@ -3,18 +3,18 @@ using DG.Tweening;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-public class EnemyBehaviour : SerializedMonoBehaviour {
+public class ObstacleBehaviour : SerializedMonoBehaviour {
     public bool IsDefeated;
     public NpcBehaviour weakness;
     public Sprite sprite;
     public YarnProgram dialogue;
     public string characterName;
     public SpriteRenderer Renderer;
-    public event Action<EnemyBehaviour> OnDefeated;
+    public event Action<ObstacleBehaviour> OnDefeated;
 
     private Tween _tween;
 
-    public void Awake() {
+    public void Start() {
         GameState.Instance.Enemies.Add(this);
     }
 
