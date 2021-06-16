@@ -40,7 +40,7 @@ public class ObstacleBehaviour : SerializedMonoBehaviour {
 
     private void HandleHide() {
         gameObject.SetActive(false);
-        AudioManager.Instance.Play(SuccessClip);
+        AudioController.Instance.Play(SuccessClip);
         OnDefeated?.Invoke(this);
     }
 }

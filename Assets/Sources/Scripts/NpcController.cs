@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 using Yarn.Unity;
 
@@ -10,13 +11,11 @@ public class NpcController : SerializedMonoBehaviour {
     private static NpcController _instance;
 
     public PlayerController Player;
-    
-    public Image DialoguePortrait;
-    public DialogueRunner DialogueRunner;
 
-    private NpcBehaviour _currentCharacter;
-    private GameState _gameState;
+    public GameState State;
     private GameConfig _gameConfig;
+    private NpcBehaviour _currentCharacter;
+    private DialogueController _dialogueController;
 
     public void Awake() {
         if (_instance != null && _instance != this) {
@@ -27,28 +26,27 @@ public class NpcController : SerializedMonoBehaviour {
     }
 
     public void Start() {
-        _gameState = GameState.Instance;
-        _gameConfig = _gameState.GameConfig;
+        _gameConfig = State.GameConfig;
+        
+        var dialogueObj = GameObject.FindWithTag("DialogueController");
+        _dialogueController = dialogueObj.GetComponent<DialogueController>();
     }
 
     public void OnEnable() {
         Player.OnPlayerMoveEnd += HandlePlayerMoveEnd;
+        State.OnDialogueEnd += HandleDialogueEnd;
     }
 
     public void OnDisable() {
         Player.OnPlayerMoveEnd -= HandlePlayerMoveEnd;
-    }
-
-    public void HandleDialogueStart() {
-        _gameState.IsDialoguePlaying = true;
+        State.OnDialogueEnd -= HandleDialogueEnd;
     }
 
     public void HandleDialogueEnd() {
         if (!_currentCharacter) {
-            throw new Exception("Tried to end dialogue while there was no current character");
+            return;
         }
-        
-        _gameState.IsDialoguePlaying = false;
+
         GameState.Instance.AddInventory(_currentCharacter);
         _currentCharacter = null;
     }
@@ -58,24 +56,20 @@ public class NpcController : SerializedMonoBehaviour {
     }
 
     private void CheckNpcDialogue() {
-        if (_gameState.IsDialoguePlaying) return;
+        if (State.IsDialoguePlaying) return;
 
         var npcs = GetUnvisitedNpcs();
         foreach (var npc in npcs) {
             var inRange = npc.CheckDistance(Player, _gameConfig.DialogueDistance);
             if (!inRange) continue;
-            
+
             ActivateForNpc(npc);
             break;
         }
     }
 
     private void ActivateForNpc(NpcBehaviour npc) {
-        DialoguePortrait.sprite = npc.sprite;
-        DialogueRunner.Stop();
-        DialogueRunner.Clear();
-        DialogueRunner.Add(npc.dialogue);
-        DialogueRunner.StartDialogue();
+        _dialogueController.ActivateForDialogue(npc);
         npc.WasVisited = true;
         _currentCharacter = npc;
     }

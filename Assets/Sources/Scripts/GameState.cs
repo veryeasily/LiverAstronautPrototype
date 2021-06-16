@@ -14,6 +14,9 @@ public class GameState : SerializedMonoBehaviour {
     public List<ObstacleBehaviour> Enemies = new List<ObstacleBehaviour>();
 
     public ReactiveCollection<NpcBehaviour> Inventory = new ReactiveCollection<NpcBehaviour>();
+
+    public event Action OnDialogueEnd;
+    public event Action OnDialogueStart;
     
     public void Awake() {
         if (_instance != null && _instance != this) {
@@ -25,5 +28,15 @@ public class GameState : SerializedMonoBehaviour {
 
     public void AddInventory(NpcBehaviour npc) {
         Inventory.Add(npc);
+    }
+
+    public void DialogueStart() {
+        IsDialoguePlaying = true;
+        OnDialogueStart?.Invoke();
+    }
+
+    public void DialogueEnd() {
+        IsDialoguePlaying = false;
+        OnDialogueEnd?.Invoke();
     }
 }

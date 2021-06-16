@@ -13,7 +13,7 @@ public class ItemBehaviour : SerializedMonoBehaviour {
         var image = obj.GetComponent<Image>();
         var behaviour = obj.GetComponent<ItemBehaviour>();
         image.color = npc.Color;
-        behaviour.Text.text = $"You picked up the\n{npc.characterName}\nItem";
+        behaviour.Text.text = $"You picked up the\n{npc.CharacterName}\nItem";
         behaviour.Shift();
         return behaviour;
     }

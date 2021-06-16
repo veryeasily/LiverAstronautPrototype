@@ -3,9 +3,9 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 [RequireComponent(typeof(AudioSource))]
-public class AudioManager : SerializedMonoBehaviour {
-    public static AudioManager Instance => _instance;
-    private static AudioManager _instance;
+public class AudioController : SerializedMonoBehaviour {
+    public static AudioController Instance => _instance;
+    private static AudioController _instance;
     
     private AudioSource _source;
     

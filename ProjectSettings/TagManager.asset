@@ -5,7 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - Npc
-  - AudioManager
+  - AudioController
+  - ObstacleController
+  - NpcController
+  - PositionController
+  - InventoryController
+  - ViewController
+  - PlayerController
+  - DialogueController
+  - DialogueRunner
+  - DialoguePortrait
   layers:
   - Default
   - TransparentFX
