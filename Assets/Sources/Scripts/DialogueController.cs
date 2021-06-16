@@ -1,12 +1,17 @@
-using System;
 using Yarn.Unity;
-using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
 
 public class DialogueController : SerializedMonoBehaviour {
     public Image Portrait;
     public DialogueRunner Runner;
+    public Dialogue StartingDialogue;
+
+    public void Start() {
+        if (!StartingDialogue) return;
+        
+        ActivateForDialogue(StartingDialogue);
+    }
 
     public void ActivateForDialogue(IDialogue dialogue) {
         Portrait.sprite = dialogue.GetSprite();

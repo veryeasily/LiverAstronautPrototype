@@ -1241,6 +1241,7 @@ MonoBehaviour:
     SerializationNodes: []
   Portrait: {fileID: 1262889393}
   Runner: {fileID: 510850452}
+  StartingDialogue: {fileID: 11400000, guid: 07065684d4599487aa1bfe65330a7073, type: 2}
 --- !u!1 &626328321
 GameObject:
   m_ObjectHideFlags: 0
