@@ -1,12 +1,15 @@
+using UniRx;
 using System;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 
-public class ObstacleController : SerializedMonoBehaviour {
+public class ObstacleController : LiverBehaviour {
     public static ObstacleController Instance => _instance;
     private static ObstacleController _instance;
 
     public PlayerController Player;
+    
+    private IDisposable _selectedItemObserver;
+    private GameState _state => GameState.Instance;
 
     private static IEnumerable<ObstacleBehaviour> GetActiveObstacles() {
         return GameState.Instance.Obstacles.FindAll(e => !e.IsDefeated);
@@ -20,11 +23,13 @@ public class ObstacleController : SerializedMonoBehaviour {
         _instance = this;
     }
 
-    public void OnEnable() {
+    public override void StartOrEnable() {
         Player.OnPlayerMoveEnd += HandlePlayerMoveEnd;
+        _selectedItemObserver = _state.SelectedItem.Subscribe(_ => CheckObstacles());
     }
 
     public void OnDisable() {
+        _selectedItemObserver.Dispose();
         Player.OnPlayerMoveEnd -= HandlePlayerMoveEnd;
     }
 
@@ -33,13 +38,16 @@ public class ObstacleController : SerializedMonoBehaviour {
     }
 
     private void CheckObstacles() {
+        _state.FailedItem.Value = null;
         var activeObstacles = GetActiveObstacles();
         foreach (var obstacle in activeObstacles) {
-            var maxDistance = GameState.Instance.GameConfig.DialogueDistance;
+            var maxDistance = _state.GameConfig.DialogueDistance;
             var inRange = obstacle.CheckDistance(Player, maxDistance);
             if (!inRange) continue;
 
-            obstacle.AttemptSuccess();
+            if (!obstacle.AttemptSuccess()) {
+                _state.FailedItem.Value = obstacle.weakness;
+            }
             break;
         }
     }

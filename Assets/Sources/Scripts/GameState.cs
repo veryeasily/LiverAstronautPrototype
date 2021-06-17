@@ -21,6 +21,8 @@ public class GameState : SerializedMonoBehaviour {
 
     public ReactiveProperty<InventoryItem> SelectedItem = new ReactiveProperty<InventoryItem>();
 
+    public ReactiveProperty<InventoryItem> FailedItem = new ReactiveProperty<InventoryItem>();
+
     public event Action OnDialogueEnd;
     public event Action OnDialogueStart;
     

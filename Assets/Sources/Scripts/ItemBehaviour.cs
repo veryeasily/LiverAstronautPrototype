@@ -1,6 +1,3 @@
-using System;
-using DG.Tweening;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
@@ -27,18 +24,15 @@ public class ItemBehaviour : SerializedMonoBehaviour {
         GameState.Instance.SelectedItem.Value = _inventoryItem;
     }
 
-    public void Render() {
-        Image.sprite = _inventoryItem.Sprite;
-        Background.color = _inventoryItem.Color;
-        if (_inventoryItem == GameState.Instance.SelectedItem.Value) {
-            Border.color = Color.magenta;
-        } else {
-            Border.color = Color.white;
-        }
-    }
-
     public void Destroy() {
         GameObject.Destroy(gameObject);
+    }
+
+    private void Render() {
+        Image.sprite = _inventoryItem.Sprite;
+        Background.color = _inventoryItem.Color;
+        var isSelected = _inventoryItem == GameState.Instance.SelectedItem.Value;
+        Border.color = isSelected ? Color.magenta : Color.white;
     }
 
     // private void Shift() {

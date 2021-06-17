@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 using UnityEngine.InputSystem;
 
 public class PlayerController : SerializedMonoBehaviour {
+    public ThoughtBalloon Balloon;
     public event Action<PositionBehaviour> OnPlayerMoveEnd;
     
     private BoxCollider2D _collider;

@@ -14,6 +14,7 @@ public class ObstacleBehaviour : SerializedMonoBehaviour {
     public event Action<ObstacleBehaviour> OnDefeated;
 
     private Tween _tween;
+    private GameState _state => GameState.Instance;
 
     public void Start() {
         GameState.Instance.Obstacles.Add(this);
@@ -32,13 +33,17 @@ public class ObstacleBehaviour : SerializedMonoBehaviour {
         return distance <= maxDistance;
     }
 
-    public void AttemptSuccess() {
-        var canDefeat = GameState.Instance.Inventory.Contains(weakness);
-        if (!canDefeat) return;
+    public bool AttemptSuccess() {
+        var selectedItem = _state.SelectedItem.Value;
+        var canDefeat = weakness == selectedItem;
+        if (!canDefeat) {
+            return false;
+        }
         
         IsDefeated = true;
         _tween = Renderer.DOColor(Color.clear, 2f);
         _tween.OnComplete(HandleHide);
+        return true;
     }
 
     private void HandleHide() {
