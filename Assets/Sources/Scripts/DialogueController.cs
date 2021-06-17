@@ -23,11 +23,13 @@ public class DialogueController : SerializedMonoBehaviour {
 
     public void HandleDialogueStart() {
         var state = GameState.Instance;
-        state.DialogueStart();
+        state.IsDialoguePlaying = true;
+        state.TriggerDialogueStart();
     }
 
     public void HandleDialogueEnd() {
         var state = GameState.Instance;
-        state.DialogueEnd();
+        state.IsDialoguePlaying = false;
+        state.TriggerDialogueEnd();
     }
 }

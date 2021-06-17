@@ -47,7 +47,7 @@ public class NpcController : SerializedMonoBehaviour {
             return;
         }
 
-        GameState.Instance.AddInventory(_currentCharacter);
+        GameState.Instance.AddInventory(_currentCharacter.InventoryItem);
         _currentCharacter = null;
     }
 

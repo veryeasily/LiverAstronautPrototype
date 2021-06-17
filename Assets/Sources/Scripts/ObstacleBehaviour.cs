@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 
 public class ObstacleBehaviour : SerializedMonoBehaviour {
     public bool IsDefeated;
-    public NpcBehaviour weakness;
+    public InventoryItem weakness;
     public Sprite sprite;
     public YarnProgram dialogue;
     public string characterName;
@@ -16,7 +16,7 @@ public class ObstacleBehaviour : SerializedMonoBehaviour {
     private Tween _tween;
 
     public void Start() {
-        GameState.Instance.Enemies.Add(this);
+        GameState.Instance.Obstacles.Add(this);
     }
 
     public void OnDestroy() {
@@ -32,7 +32,10 @@ public class ObstacleBehaviour : SerializedMonoBehaviour {
         return distance <= maxDistance;
     }
 
-    public void Defeat() {
+    public void AttemptSuccess() {
+        var canDefeat = GameState.Instance.Inventory.Contains(weakness);
+        if (!canDefeat) return;
+        
         IsDefeated = true;
         _tween = Renderer.DOColor(Color.clear, 2f);
         _tween.OnComplete(HandleHide);

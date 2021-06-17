@@ -7,7 +7,7 @@ public class GameController : SerializedMonoBehaviour {
     public static GameController Instance => _instance;
     private static GameController _instance;
 
-    public PlayerController Player;
+    public PlayerController Player => GameState.Instance.Player;
 
     public void Awake() {
         if (_instance != null && _instance != this) {

@@ -1,11 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
-using Yarn.Unity;
 
 public class ObstacleController : SerializedMonoBehaviour {
     public static ObstacleController Instance => _instance;
@@ -13,11 +8,10 @@ public class ObstacleController : SerializedMonoBehaviour {
 
     public PlayerController Player;
 
-    public Image DialoguePortrait;
-    public DialogueRunner DialogueRunner;
-
-    [FormerlySerializedAs("_currentEnemy")] [SerializeReference] private ObstacleBehaviour CurrentObstacle;
-
+    private static IEnumerable<ObstacleBehaviour> GetActiveObstacles() {
+        return GameState.Instance.Obstacles.FindAll(e => !e.IsDefeated);
+    }
+    
     public void Awake() {
         if (_instance != null && _instance != this) {
             throw new Exception("Tried to create multiple instances");
@@ -35,33 +29,18 @@ public class ObstacleController : SerializedMonoBehaviour {
     }
 
     private void HandlePlayerMoveEnd(object ignore) {
-        CheckEnemies();
+        CheckObstacles();
     }
 
-    private void CheckEnemies() {
-        if (CurrentObstacle) return;
-        
-        var activeEnemies = GetActiveEnemies();
-        foreach (var enemy in activeEnemies) {
+    private void CheckObstacles() {
+        var activeObstacles = GetActiveObstacles();
+        foreach (var obstacle in activeObstacles) {
             var maxDistance = GameState.Instance.GameConfig.DialogueDistance;
-            var inRange = enemy.CheckDistance(Player, maxDistance);
+            var inRange = obstacle.CheckDistance(Player, maxDistance);
             if (!inRange) continue;
 
-            ActivateForEnemy(enemy);
+            obstacle.AttemptSuccess();
             break;
         }
-    }
-
-    private void ActivateForEnemy(ObstacleBehaviour obstacle) {
-        CurrentObstacle = obstacle;
-        
-        var canDefeat = GameState.Instance.Inventory.Contains(obstacle.weakness);
-        if (canDefeat) {
-            obstacle.Defeat();
-        }
-    }
-
-    private IEnumerable<ObstacleBehaviour> GetActiveEnemies() {
-        return GameState.Instance.Enemies.FindAll(e => !e.IsDefeated);
     }
 }

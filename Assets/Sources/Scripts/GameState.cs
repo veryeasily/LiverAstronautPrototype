@@ -9,11 +9,17 @@ public class GameState : SerializedMonoBehaviour {
 
     public GameConfig GameConfig;
     public bool IsDialoguePlaying;
+    public PlayerController Player;
+    public PositionBehaviour PlayerPosition;
 
     public List<NpcBehaviour> Npcs = new List<NpcBehaviour>();
-    public List<ObstacleBehaviour> Enemies = new List<ObstacleBehaviour>();
+    public List<ObstacleBehaviour> Obstacles = new List<ObstacleBehaviour>();
 
-    public ReactiveCollection<NpcBehaviour> Inventory = new ReactiveCollection<NpcBehaviour>();
+    public InventoryItem Dad;
+    public InventoryItem Teacher;
+    public ReactiveCollection<InventoryItem> Inventory = new ReactiveCollection<InventoryItem>();
+
+    public ReactiveProperty<InventoryItem> SelectedItem = new ReactiveProperty<InventoryItem>();
 
     public event Action OnDialogueEnd;
     public event Action OnDialogueStart;
@@ -24,19 +30,20 @@ public class GameState : SerializedMonoBehaviour {
         }
 
         _instance = this;
+        
+        Inventory.Add(Dad);
+        Inventory.Add(Teacher);
     }
 
-    public void AddInventory(NpcBehaviour npc) {
-        Inventory.Add(npc);
+    public void AddInventory(InventoryItem item) {
+        Inventory.Add(item);
     }
 
-    public void DialogueStart() {
-        IsDialoguePlaying = true;
+    public void TriggerDialogueStart() {
         OnDialogueStart?.Invoke();
     }
 
-    public void DialogueEnd() {
-        IsDialoguePlaying = false;
+    public void TriggerDialogueEnd() {
         OnDialogueEnd?.Invoke();
     }
 }

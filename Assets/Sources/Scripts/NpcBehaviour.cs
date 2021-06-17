@@ -7,6 +7,7 @@ public class NpcBehaviour : SerializedMonoBehaviour, IDialogue {
     public YarnProgram Dialogue;
     public string CharacterName;
     public Color Color = Color.blue;
+    public InventoryItem InventoryItem;
 
     public void Awake() {
         GameState.Instance.Npcs.Add(this);

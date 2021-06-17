@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UniRx;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InventoryController : SerializedMonoBehaviour {
     public GameObject InventoryContainer;
@@ -11,10 +10,11 @@ public class InventoryController : SerializedMonoBehaviour {
 
     private IDisposable _moveObserver;
     private IDisposable _changeObserver;
+    private IDisposable _selectedObserver;
     private List<ItemBehaviour> _items = new List<ItemBehaviour>();
 
     private bool _started;
-    private ReactiveCollection<NpcBehaviour> _inventory => GameState.Instance.Inventory;
+    private ReactiveCollection<InventoryItem> _inventory => GameState.Instance.Inventory;
     
     public void OnEnable() {
         if (_started) {
@@ -32,11 +32,14 @@ public class InventoryController : SerializedMonoBehaviour {
     public void OnDisable() {
         _moveObserver.Dispose();
         _changeObserver.Dispose();
+        _selectedObserver.Dispose();
     }
 
     private void StartOrEnable() {
         _moveObserver = _inventory.ObserveMove().Subscribe(_ => HandleInventoryChange());
         _changeObserver = _inventory.ObserveCountChanged().Subscribe(_ => HandleInventoryChange());
+        _selectedObserver = GameState.Instance.SelectedItem.Subscribe(_ => HandleInventoryChange());
+        HandleInventoryChange();
     }
 
     private void HandleInventoryChange() {
