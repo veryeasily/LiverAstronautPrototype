@@ -1,23 +1,24 @@
 using Yarn.Unity;
 using Sirenix.OdinInspector;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class DialogueController : SerializedMonoBehaviour {
     public Image Portrait;
     public DialogueRunner Runner;
-    public Dialogue StartingDialogue;
+    public Speaker StartingSpeaker;
 
     public void Start() {
-        if (!StartingDialogue) return;
+        if (!StartingSpeaker) return;
         
-        ActivateForDialogue(StartingDialogue);
+        ActivateForDialogue(StartingSpeaker);
     }
 
-    public void ActivateForDialogue(IDialogue dialogue) {
-        Portrait.sprite = dialogue.GetSprite();
+    public void ActivateForDialogue(ISpeaker speaker) {
+        Portrait.sprite = speaker.GetSprite();
         Runner.Stop();
         Runner.Clear();
-        Runner.Add(dialogue.GetDialogue());
+        Runner.Add(speaker.GetDialogue());
         Runner.StartDialogue();
     }
 

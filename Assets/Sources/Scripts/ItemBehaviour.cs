@@ -1,27 +1,27 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
+using UnityAtoms;
 
 public class ItemBehaviour : SerializedMonoBehaviour {
     public Image Image;
     public Image Background;
     public Image Border;
 
-    private InventoryItem _inventoryItem;
+    private Specter _specter;
+    [SerializeField] private SpecterVariable _currentSpecter;
     
-    public static ItemBehaviour Create(InventoryItem inventoryItem, Transform t) {
-        var resource = Resources.Load<GameObject>("Prefabs/InventoryItem");
+    public static ItemBehaviour Create(Specter specter, Transform t) {
+        var resource = Resources.Load<GameObject>("Prefabs/Specter");
         var obj = Instantiate(resource, t);
         var behaviour = obj.GetComponent<ItemBehaviour>();
-        behaviour._inventoryItem = inventoryItem;
-        // behaviour.Text.text = $"You picked up the\n{inventoryItem.ItemName}\nItem";
-        // behaviour.Shift();
+        behaviour._specter = specter;
         behaviour.Render();
         return behaviour;
     }
 
     public void HandleSelected() {
-        GameState.Instance.SelectedItem.Value = _inventoryItem;
+        _currentSpecter.SetValue(_specter);
     }
 
     public void Destroy() {
@@ -29,9 +29,9 @@ public class ItemBehaviour : SerializedMonoBehaviour {
     }
 
     private void Render() {
-        Image.sprite = _inventoryItem.Sprite;
-        Background.color = _inventoryItem.Color;
-        var isSelected = _inventoryItem == GameState.Instance.SelectedItem.Value;
+        Image.sprite = _specter.Sprite;
+        Background.color = _specter.Color;
+        var isSelected = _specter == _currentSpecter.Value;
         Border.color = isSelected ? Color.magenta : Color.white;
     }
 

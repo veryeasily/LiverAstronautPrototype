@@ -1,7 +1,8 @@
 using System;
-using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UniRx;
+using Sirenix.OdinInspector;
+using System.Collections.Generic;
+using UnityAtoms;
 
 public class GameState : SerializedMonoBehaviour {
     public static GameState Instance => _instance;
@@ -10,18 +11,11 @@ public class GameState : SerializedMonoBehaviour {
     public GameConfig GameConfig;
     public bool IsDialoguePlaying;
     public PlayerController Player;
-    public PositionBehaviour PlayerPosition;
 
-    public List<NpcBehaviour> Npcs = new List<NpcBehaviour>();
+    public List<SpeakerBehaviour> Npcs = new List<SpeakerBehaviour>();
     public List<ObstacleBehaviour> Obstacles = new List<ObstacleBehaviour>();
 
-    public InventoryItem Dad;
-    public InventoryItem Teacher;
-    public ReactiveCollection<InventoryItem> Inventory = new ReactiveCollection<InventoryItem>();
-
-    public ReactiveProperty<InventoryItem> SelectedItem = new ReactiveProperty<InventoryItem>();
-
-    public ReactiveProperty<InventoryItem> FailedItem = new ReactiveProperty<InventoryItem>();
+    public ReactiveProperty<Specter> FailedItem = new ReactiveProperty<Specter>();
 
     public event Action OnDialogueEnd;
     public event Action OnDialogueStart;
@@ -32,13 +26,6 @@ public class GameState : SerializedMonoBehaviour {
         }
 
         _instance = this;
-        
-        Inventory.Add(Dad);
-        Inventory.Add(Teacher);
-    }
-
-    public void AddInventory(InventoryItem item) {
-        Inventory.Add(item);
     }
 
     public void TriggerDialogueStart() {

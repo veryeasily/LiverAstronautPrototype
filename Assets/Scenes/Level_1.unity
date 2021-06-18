@@ -1241,7 +1241,7 @@ MonoBehaviour:
     SerializationNodes: []
   Portrait: {fileID: 1262889393}
   Runner: {fileID: 510850452}
-  StartingDialogue: {fileID: 11400000, guid: 07065684d4599487aa1bfe65330a7073, type: 2}
+  StartingSpeaker: {fileID: 11400000, guid: 07065684d4599487aa1bfe65330a7073, type: 2}
 --- !u!1 &626328321
 GameObject:
   m_ObjectHideFlags: 0
@@ -3484,7 +3484,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &672606111
 GameObject:
@@ -3639,6 +3639,8 @@ GameObject:
   m_Component:
   - component: {fileID: 714568967}
   - component: {fileID: 714568966}
+  - component: {fileID: 714568969}
+  - component: {fileID: 714568968}
   m_Layer: 0
   m_Name: InventoryController
   m_TagString: InventoryController
@@ -3668,6 +3670,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   InventoryContainer: {fileID: 1212767284}
+  Inventory: {fileID: 11400000, guid: 981924c2a26ce42ba850d84daee97952, type: 2}
 --- !u!4 &714568967
 Transform:
   m_ObjectHideFlags: 0
@@ -3682,6 +3685,82 @@ Transform:
   m_Father: {fileID: 1180049393}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &714568968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714568965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df745bb8b3bcd4bd7830dff6e7f4c5c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _developerDescription: 
+  _unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 714568966}
+        m_TargetAssemblyTypeName: InventoryController, Assembly-CSharp
+        m_MethodName: HandleInventoryChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _actionResponses: []
+  _conditions: []
+  _operator: 0
+  _replayEventBufferOnRegister: 1
+  _eventReference:
+    _usage: 0
+    _event: {fileID: 11400000, guid: ba49c62ab093f433a96c2b323572b0a5, type: 2}
+    _eventInstancer: {fileID: 0}
+    _variable: {fileID: 0}
+    _variableInstancer: {fileID: 0}
+--- !u!114 &714568969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714568965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df745bb8b3bcd4bd7830dff6e7f4c5c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _developerDescription: 
+  _unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 714568966}
+        m_TargetAssemblyTypeName: InventoryController, Assembly-CSharp
+        m_MethodName: HandleInventoryChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _actionResponses: []
+  _conditions: []
+  _operator: 0
+  _replayEventBufferOnRegister: 1
+  _eventReference:
+    _usage: 2
+    _event: {fileID: 11400000, guid: ba49c62ab093f433a96c2b323572b0a5, type: 2}
+    _eventInstancer: {fileID: 0}
+    _variable: {fileID: 11400000, guid: 910a6f4a4c3b84a9da4bb98efbe2d105, type: 2}
+    _variableInstancer: {fileID: 0}
 --- !u!1 &715273805
 GameObject:
   m_ObjectHideFlags: 0
@@ -3723,13 +3802,8 @@ MonoBehaviour:
   GameConfig: {fileID: 11400000, guid: 21be53c904bb4414f9d27a45d1e6274c, type: 2}
   IsDialoguePlaying: 0
   Player: {fileID: 1648776954}
-  PlayerPosition: {fileID: 0}
   Npcs: []
   Obstacles: []
-  Dad: {fileID: 11400000, guid: 95d38ebe90e4b4aa0a0c2d59858f207a, type: 2}
-  Teacher: {fileID: 11400000, guid: e85085c55d31e4f2ab4e07e39410ea36, type: 2}
-  SelectedItem:
-    value: {fileID: 0}
   FailedItem:
     value: {fileID: 0}
 --- !u!4 &715273807
@@ -3744,7 +3818,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &729727391
 GameObject:
@@ -4053,7 +4127,7 @@ RectTransform:
   - {fileID: 100168079}
   - {fileID: 672606112}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4231,8 +4305,9 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  Player: {fileID: 1648776954}
   State: {fileID: 715273806}
+  Player: {fileID: 1648776954}
+  Inventory: {fileID: 11400000, guid: 981924c2a26ce42ba850d84daee97952, type: 2}
 --- !u!4 &1010984743
 Transform:
   m_ObjectHideFlags: 0
@@ -7129,7 +7204,7 @@ Transform:
   - {fileID: 626328322}
   - {fileID: 1363418702}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1180049392
 GameObject:
@@ -7167,7 +7242,7 @@ Transform:
   - {fileID: 1042024847}
   - {fileID: 601419261}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1195316457
 GameObject:
@@ -7415,7 +7490,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7562,6 +7637,7 @@ MonoBehaviour:
   characterName: EvilWizard
   SuccessClip: {fileID: 8300000, guid: 1a00b2758ad294c408651b8920099db6, type: 3}
   Renderer: {fileID: 1195316459}
+  _currentSpecter: {fileID: 11400000, guid: 910a6f4a4c3b84a9da4bb98efbe2d105, type: 2}
 --- !u!1 &1514844893
 GameObject:
   m_ObjectHideFlags: 0
@@ -7697,7 +7773,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1615705492
 GameObject:
@@ -7948,6 +8024,62 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
+--- !u!1 &1656359130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1656359132}
+  - component: {fileID: 1656359131}
+  m_Layer: 0
+  m_Name: AtomInitializer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1656359131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656359130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82612e23f5b2496ea2540bb363af41b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  Inventory: {fileID: 11400000, guid: 981924c2a26ce42ba850d84daee97952, type: 2}
+  InitialInventory:
+  - {fileID: 11400000, guid: 95d38ebe90e4b4aa0a0c2d59858f207a, type: 2}
+  - {fileID: 11400000, guid: e85085c55d31e4f2ab4e07e39410ea36, type: 2}
+--- !u!4 &1656359132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656359130}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1991771713
 GameObject:
   m_ObjectHideFlags: 0
@@ -7958,6 +8090,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1991771715}
   - component: {fileID: 1991771714}
+  - component: {fileID: 1991771716}
   m_Layer: 0
   m_Name: ObstacleController
   m_TagString: ObstacleController
@@ -8001,6 +8134,44 @@ Transform:
   m_Father: {fileID: 1180049393}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1991771716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991771713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df745bb8b3bcd4bd7830dff6e7f4c5c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _developerDescription: 
+  _unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1991771714}
+        m_TargetAssemblyTypeName: ObstacleController, Assembly-CSharp
+        m_MethodName: CheckObstacles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _actionResponses: []
+  _conditions: []
+  _operator: 0
+  _replayEventBufferOnRegister: 1
+  _eventReference:
+    _usage: 2
+    _event: {fileID: 0}
+    _eventInstancer: {fileID: 0}
+    _variable: {fileID: 11400000, guid: 910a6f4a4c3b84a9da4bb98efbe2d105, type: 2}
+    _variableInstancer: {fileID: 0}
 --- !u!1 &2040710765
 GameObject:
   m_ObjectHideFlags: 0
@@ -8012,7 +8183,7 @@ GameObject:
   - component: {fileID: 2040710766}
   - component: {fileID: 2040710767}
   m_Layer: 0
-  m_Name: Npc_01
+  m_Name: Wizard_01
   m_TagString: Npc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8060,11 +8231,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   WasVisited: 0
-  Sprite: {fileID: 21300000, guid: 4b00017be02c8a8f2a6247997f37a9cb, type: 3}
-  Dialogue: {fileID: 2480198943629176163, guid: 762d60e6c68c24ad89e32b5e83da3cd2, type: 3}
-  CharacterName: Wizard
-  Color: {r: 0, g: 0, b: 1, a: 1}
-  InventoryItem: {fileID: 11400000, guid: 84d8e8dfa952f4d7d95d30c856c02a09, type: 2}
+  NpcSpeaker: {fileID: 11400000, guid: a6381653b40a4405e92506d6fd7d2176, type: 2}
 --- !u!1 &2098673042
 GameObject:
   m_ObjectHideFlags: 0
@@ -8196,5 +8363,3 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   IdeaRenderer: {fileID: 773366277}
-  Status:
-    value: 0

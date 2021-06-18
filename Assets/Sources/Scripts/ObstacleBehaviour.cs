@@ -2,10 +2,11 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityAtoms;
 
 public class ObstacleBehaviour : SerializedMonoBehaviour {
     public bool IsDefeated;
-    public InventoryItem weakness;
+    public Specter weakness;
     public Sprite sprite;
     public YarnProgram dialogue;
     public string characterName;
@@ -15,9 +16,10 @@ public class ObstacleBehaviour : SerializedMonoBehaviour {
 
     private Tween _tween;
     private GameState _state => GameState.Instance;
+    [SerializeField, Required] private SpecterVariable _currentSpecter;
 
     public void Start() {
-        GameState.Instance.Obstacles.Add(this);
+        _state.Obstacles.Add(this);
     }
 
     public void OnDestroy() {
@@ -34,7 +36,7 @@ public class ObstacleBehaviour : SerializedMonoBehaviour {
     }
 
     public bool AttemptSuccess() {
-        var selectedItem = _state.SelectedItem.Value;
+        var selectedItem = _currentSpecter.Value;
         var canDefeat = weakness == selectedItem;
         if (!canDefeat) {
             return false;

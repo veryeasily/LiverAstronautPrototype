@@ -2,28 +2,20 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using System.Linq;
+using UnityAtoms;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Yarn.Unity;
 
 public class NpcController : SerializedMonoBehaviour {
-    public static NpcController Instance => _instance;
-    private static NpcController _instance;
-
-    public PlayerController Player;
-
     public GameState State;
+    public PlayerController Player;
+    public SpecterValueList Inventory;
+
     private GameConfig _gameConfig;
-    private NpcBehaviour _currentCharacter;
+    private SpeakerBehaviour _currentSpeaker;
     private DialogueController _dialogueController;
-
-    public void Awake() {
-        if (_instance != null && _instance != this) {
-            throw new Exception("Tried to create multiple instances");
-        }
-
-        _instance = this;
-    }
 
     public void Start() {
         _gameConfig = State.GameConfig;
@@ -43,12 +35,13 @@ public class NpcController : SerializedMonoBehaviour {
     }
 
     public void HandleDialogueEnd() {
-        if (!_currentCharacter) {
+        if (!_currentSpeaker) {
             return;
         }
 
-        GameState.Instance.AddInventory(_currentCharacter.InventoryItem);
-        _currentCharacter = null;
+        var specter = _currentSpeaker.NpcSpeaker.Specter;
+        Inventory.Add(specter);
+        _currentSpeaker = null;
     }
 
     private void HandlePlayerMoveEnd(object ignore) {
@@ -68,13 +61,13 @@ public class NpcController : SerializedMonoBehaviour {
         }
     }
 
-    private void ActivateForNpc(NpcBehaviour npc) {
-        _dialogueController.ActivateForDialogue(npc);
+    private void ActivateForNpc(SpeakerBehaviour npc) {
+        _dialogueController.ActivateForDialogue(npc.NpcSpeaker);
         npc.WasVisited = true;
-        _currentCharacter = npc;
+        _currentSpeaker = npc;
     }
 
-    private IEnumerable<NpcBehaviour> GetUnvisitedNpcs() {
+    private IEnumerable<SpeakerBehaviour> GetUnvisitedNpcs() {
         var allNpcs = GameState.Instance.Npcs;
         return from npc in allNpcs where !npc.WasVisited select npc;
     }
