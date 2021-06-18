@@ -15,6 +15,7 @@ TagManager:
   - DialogueController
   - DialogueRunner
   - DialoguePortrait
+  - Blocker
   layers:
   - Default
   - TransparentFX

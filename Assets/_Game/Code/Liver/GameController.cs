@@ -1,12 +1,15 @@
 using System;
+using System.Collections;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GameController : SerializedMonoBehaviour {
     public static GameController Instance => _instance;
     private static GameController _instance;
 
+    public GameObject YouWinObject;
     public PlayerController Player => GameState.Instance.Player;
 
     public void Awake() {
@@ -31,5 +34,15 @@ public class GameController : SerializedMonoBehaviour {
                 Player.OnOpenInput(ctx);
                 break;
         }
+    }
+
+    public void WinGame() {
+        StartCoroutine(WinWithDelay());
+    }
+
+    private IEnumerator WinWithDelay() {
+        YouWinObject.SetActive(true);
+        yield return new WaitForSeconds(10f);
+        Application.Quit();
     }
 }
