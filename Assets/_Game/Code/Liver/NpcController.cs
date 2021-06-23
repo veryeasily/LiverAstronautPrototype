@@ -41,6 +41,7 @@ public class NpcController : SerializedMonoBehaviour {
 
         var specter = _currentSpeaker.NpcSpeaker.Specter;
         Inventory.Add(specter);
+        AudioManager.Instance.Play(specter.AddToInventorySound);
         _currentSpeaker = null;
     }
 

@@ -16,3 +16,4 @@ MonoBehaviour:
   Sprite: {fileID: 21300000, guid: 4b00017be02c8a8f2a6247997f37a9cb, type: 3}
   SpiritName: Wizard
   TimeEquipped: 0
+  AddToInventorySound: {fileID: 8300000, guid: 95859ad34516c7194973982d2d345d4c, type: 3}

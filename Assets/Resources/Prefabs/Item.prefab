@@ -233,7 +233,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 783569222766523084}
-        m_TargetAssemblyTypeName: ItemBehaviour, Assembly-CSharp
+        m_TargetAssemblyTypeName: Item, Assembly-CSharp
         m_MethodName: HandleSelected
         m_Mode: 1
         m_Arguments:

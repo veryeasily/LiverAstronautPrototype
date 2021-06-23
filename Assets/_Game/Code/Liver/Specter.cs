@@ -7,6 +7,7 @@ public class Specter : ScriptableObject, IEquatable<Specter> {
     public Sprite Sprite;
     public string SpiritName;
     public float TimeEquipped;
+    public AudioClip AddToInventorySound;
 
     public bool Equals(Specter other) {
         return this == other;
