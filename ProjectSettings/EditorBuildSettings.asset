@@ -8,5 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Game/Data/Scenes/Level_1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/_Game/Data/Scenes/Level_Intro.unity
+    guid: fec3115840a064c04bbe6be948a1efa2
   m_configObjects:
     xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: 92f63fc8a71a94164900b5799d9d34e6, type: 2}

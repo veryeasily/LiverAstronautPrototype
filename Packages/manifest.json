@@ -64,7 +64,9 @@
     "com.unity-atoms.unity-atoms-scene-mgmt": "4.4.3",
     "com.unity-atoms.unity-atoms-ui": "4.4.3",
     "com.unity-atoms.unity-atoms-input-system": "4.4.3",
-    "com.cysharp.unitask": "2.2.5"
+    "com.cysharp.unitask": "2.2.5",
+    "com.leopotam.ecs-unityintegration": "https://github.com/Leopotam/ecs-unityintegration.git",
+    "com.leopotam.ecs": "https://github.com/Leopotam/ecs.git"
   },
   "scopedRegistries": [
     {

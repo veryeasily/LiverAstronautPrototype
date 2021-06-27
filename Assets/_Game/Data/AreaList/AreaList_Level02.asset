@@ -1,0 +1,204 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ea07073c9dd40e493e2dd6816470d60, type: 3}
+  m_Name: AreaList_Level02
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  List:
+  - Color: {r: 0.08117937, g: 0.48014194, b: 0.30853218, a: 1}
+    X: -3.3561795
+    Y: -2.4935942
+    Width: 1.4773169
+    Height: 4.1164894
+    IntervalTime: 12.163735
+  - Color: {r: 0.048306946, g: 0.15633135, b: 0.20913938, a: 1}
+    X: -4.775976
+    Y: -3.5190275
+    Width: 3.9168286
+    Height: 4.3990884
+    IntervalTime: 13.195423
+  - Color: {r: 0.64802796, g: 0.27447274, b: 0.57604086, a: 1}
+    X: 2.5669432
+    Y: 2.6366842
+    Width: 1.7518992
+    Height: 4.9329953
+    IntervalTime: 3.6611958
+  - Color: {r: 0.62392193, g: 0.5957312, b: 0.38149843, a: 1}
+    X: 9.41916
+    Y: -4.164443
+    Width: 2.4530613
+    Height: 1.8540807
+    IntervalTime: 11.833079
+  - Color: {r: 0.5797344, g: 0.5337672, b: 0.48689252, a: 1}
+    X: 1.7220268
+    Y: 3.0742395
+    Width: 3.1760833
+    Height: 3.79066
+    IntervalTime: 10.56834
+  - Color: {r: 0.43958157, g: 0.565093, b: 0.276382, a: 1}
+    X: 9.255329
+    Y: 1.1289759
+    Width: 2.101258
+    Height: 4.055001
+    IntervalTime: 15.594901
+  - Color: {r: 0.35873073, g: 0.4075715, b: 0.27148488, a: 1}
+    X: -7.4245353
+    Y: -0.9820323
+    Width: 3.8093166
+    Height: 3.536617
+    IntervalTime: 14.989438
+  - Color: {r: 0.082754366, g: 0.35973778, b: 0.28874654, a: 1}
+    X: 4.4546413
+    Y: -2.1984391
+    Width: 1.4237657
+    Height: 1.9173741
+    IntervalTime: 9.013722
+  - Color: {r: 0.20637678, g: 0.5688227, b: 0.19809723, a: 1}
+    X: -9.39896
+    Y: -4.3398333
+    Width: 2.0601957
+    Height: 3.7259767
+    IntervalTime: 13.339587
+  - Color: {r: 0.22895472, g: 0.030836951, b: 0.46758896, a: 1}
+    X: 4.1830816
+    Y: 1.0714598
+    Width: 1.0162373
+    Height: 4.656414
+    IntervalTime: 16.36175
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4
+  - Color: {r: 0, g: 1, b: 0, a: 1}
+    X: 1
+    Y: 1
+    Width: 1
+    Height: 1
+    IntervalTime: 4

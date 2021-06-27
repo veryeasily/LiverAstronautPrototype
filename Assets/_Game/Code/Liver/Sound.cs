@@ -1,11 +1,9 @@
 using UnityEngine;
-using Sirenix.OdinInspector;
 
-public class Sound : SerializedMonoBehaviour {
-    public float Delay;
-    public AudioClip Audio;
-
-    public void Start() {
-        AudioManager.Instance.Play(Audio, Delay);
-    }
+[System.Serializable]
+public class Sound {
+    public AudioClip Clip;
+    
+    public float Volume;
+    public float Pitch;
 }
