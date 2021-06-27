@@ -517,16 +517,37 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: a1047c374cf98494f8f1450fa7cc1c43, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: StateType
+      Entry: 7
+      Data: 0|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Liver.AreaData, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ViewType
+      Entry: 7
+      Data: 1|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: Liver.Area, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: List
+      Entry: 10
+      Data: 0
   AreaList: {fileID: 11400000, guid: 6d67d72ef76834ad4b05ce9d70edde74, type: 2}
   Prefab: {fileID: 6859576603392111031, guid: 73b5e94aa55ca410c94ed173623c4389, type: 3}
   Container: {fileID: 2106919633}
-  List: {fileID: 11400000, guid: a1047c374cf98494f8f1450fa7cc1c43, type: 2}
 --- !u!114 &976250266
 MonoBehaviour:
   m_ObjectHideFlags: 0

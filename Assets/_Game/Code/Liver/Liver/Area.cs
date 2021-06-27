@@ -4,17 +4,16 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Shapes;
 using UnityEngine;
-using Sirenix.OdinInspector;
 using UniRx;
 
 namespace Liver {
     [RequireComponent(typeof(Rectangle))]
-    public class Area : SerializedMonoBehaviour {
+    public class Area : AbstractView<AreaData> {
         public ReactiveProperty<AreaData> State = new ReactiveProperty<AreaData>();
         private Rectangle _rect;
         private readonly List<Tween> _tweens = new List<Tween>();
 
-        public void Initialize(AreaData data) {
+        public override void Initialize(AreaData data) {
             var tr = transform;
             var pos = tr.localPosition;
             _rect = GetComponent<Rectangle>();
